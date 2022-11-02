@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import HeaderComponent from './HeaderComponent';
+import ListComponent from './ListComponent'
 
 class App extends Component {
   constructor(props){
@@ -14,7 +16,7 @@ class App extends Component {
     fetch(`http://hn.algolia.com/api/v1/search?query=${query}`)
     .then(response => response.json())
     .then(data => {
-      const searchResults = data
+      const searchResults = data.hits
       this.setState({ searchResults })
     })
   }
@@ -22,10 +24,14 @@ class App extends Component {
     render() {
       return (
             <div className='App'>
-              <HeaderComponent/>
-              <FilterComponent/>
-              <ListComponent searchResults={this.state.searchResults} />
-              <FooterComponent/>
+              <HeaderComponent searchFunction={this.returnSearchResults}/>
+              {/* <FilterComponent/> */}
+              <div>
+                <ul>
+                  <ListComponent searchResults={this.state.searchResults} />
+                </ul>
+              </div>
+              {/* <FooterComponent/> */}
             </div>
       )
     }
