@@ -1,34 +1,35 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"  />
-         <h1>Search Hacker News</h1>
-         <form>
-          <input placeholder='Search stories by title, url, or author'></input>
-         </form>
-         <span>Settings</span>
-      </header>
-      <main>
-        <div>
-          <h2>Filter by:</h2>
-          <form>
-            <input>dropdown menu with default, date, and author</input>
-          </form>
-          <h2>number of results</h2>
-        </div>
-        <ul>The search results will be listed here as LI's
+class App extends Component {
+  constructor(props){
+    super(props)
 
-        </ul>
-      </main>
-      <footer>
-          There will be a bunch of a tags here for links
-      </footer>
-    </div>
-  );
-}
+    this.state = {
+      searchResults: []
+    };
+  }
+
+  returnSearchResults = (query) => {
+    fetch(`http://hn.algolia.com/api/v1/search?query=${query}`)
+    .then(response => response.json())
+    .then(data => {
+      const searchResults = data
+      this.setState({ searchResults })
+    })
+  }
+
+    render() {
+      return (
+            <div className='App'>
+              <HeaderComponent/>
+              <FilterComponent/>
+              <ListComponent searchResults={this.state.searchResults} />
+              <FooterComponent/>
+            </div>
+      )
+    }
+  }
+
 
 export default App;
