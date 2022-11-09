@@ -20,6 +20,7 @@ class App extends Component {
     this.setState({ filterTerm: event.target.value });
   }
 
+  
   returnSearchResults = (query) => {
     if (this.state.filterTerm === "author") {
       return fetch(
