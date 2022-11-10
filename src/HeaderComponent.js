@@ -23,7 +23,7 @@ class HeaderComponent extends React.Component {
 
     render() {
         return (
-            <div style={{display: "flex"}}>
+            <div className='headerComponent'>
                 <a href="https://news.ycombinator.com">H</a>
                 <h1>Search Hacker News</h1>
                 <form onSubmit={this.handleSubmit}>

@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.headerComponent {
+  display: flex;
+  width: 80%;
+  height: fit-content;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: orangered;
+}
