@@ -8,7 +8,7 @@ function ListComponent(props){
             return(
                 <li key={result.objectID} style={{backgroundColor: 'rebeccapurple'}}>
                     <span>
-                        {result.title}
+                        {result.title ? result.title : result.comment_text}
                         <a href={result.title}>{result.url}</a>
                     </span>
                     <h2>
